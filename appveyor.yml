@@ -1,0 +1,17 @@
+version: '{build}'
+
+init:
+  - git config --global core.autocrlf true
+
+cache:
+  - packages -> **\packages.config
+
+before_build:
+  - ps: nuget restore
+
+build:
+  project: AjaxControlToolkit.sln
+  verbosity: minimal
+
+test:
+  assemblies: bin\AjaxControlToolkit.Tests.dll
